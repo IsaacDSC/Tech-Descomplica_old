@@ -9,3 +9,11 @@ datasource db {
 generator client {
   provider = "prisma-client-js"
 }
+
+model Student {
+  id     String @id @default(uuid())
+  nome   String
+  CPF    String
+  email  String
+  status Boolean @default(true)
+}
