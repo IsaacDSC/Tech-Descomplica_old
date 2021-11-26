@@ -7,3 +7,6 @@ export interface IStudent {
     email: string
     status: string
 }
+export interface IWhereStudent{
+    id: string
+}

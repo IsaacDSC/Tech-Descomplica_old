@@ -1,17 +1,41 @@
 import { prisma } from '../../config'
-import { IStudent } from './interfaces'
+import { IStudent, IWhereStudent } from './interfaces'
 
 export class StudentRepository {
-    async search() { }
-    async create(data: IStudent) {
+    async searchAll() {
         try {
-            const { nome, CPF, email, status } = data
-            return await prisma.student.create({ data: { nome, CPF, email, status } })
+            return await prisma.student.findMany()
+        } catch (error) {
+            throw error.message
+        }
+    }
+    async searchABy(data: object) {
+        try {
+            return await prisma.student.findMany({ where: data })
         } catch (error) {
             console.log(error)
             throw error.message
         }
     }
-    async update() { }
-    async delete() { }
+    async create(data: IStudent) {
+        try {
+            const { nome, CPF, email } = data
+            return await prisma.student.create({ data: { nome, CPF, email } })
+        } catch (error) {
+            console.log(error)
+            throw error.message
+        }
+    }
+    async update(idUser: IWhereStudent, data: object) {
+        try {
+            const { id } = idUser
+            return prisma.student.update({ where: idUser, data })
+        } catch (error) {
+            throw error.message
+        }
+    }
+    async delete(idUser: IWhereStudent) {
+        const { id } = idUser
+        return prisma.student.delete({ where: { id } })
+    }
 }
