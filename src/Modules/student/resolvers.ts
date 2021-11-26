@@ -1,4 +1,5 @@
-
+import { StudentRepository } from './respository'
+const repository = new StudentRepository
 
 
 export default {
