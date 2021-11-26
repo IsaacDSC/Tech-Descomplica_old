@@ -1,0 +1,69 @@
+type ProductLive {
+  id: String
+  product: Product
+  productId: String!
+  liveId: String!
+  avaliable: Boolean
+}
+
+type ReturnProductLive {
+  data: [ProductLive]
+  status: String!
+  message: String
+}
+
+type ReturnSingleProductLive {
+  data: ProductLive
+  status: String!
+  message: String
+}
+
+type Product {
+  id: String
+  enterpriseId: String!
+  name: String!
+  description: String!
+  category: CategoryProduct
+  price: String!
+  size: String
+  image: String
+  gallery: [GalleryProduct]
+  status: Boolean
+  url: String
+  sku: String
+  productid: String
+}
+
+type CategoryProduct {
+  name: String
+  description: String
+}
+
+type GalleryProduct {
+  image: String
+}
+
+input ProductLiveRegister {
+  id: String
+  productId: String!
+  liveId: String!
+  avaliable: Boolean
+}
+
+input ProductsByLive {
+  liveId: String!
+}
+
+input DeleteProductLive {
+  id: String!
+}
+
+type Query {
+  getProductsbyLive(data: ProductsByLive!): ReturnProductLive!
+}
+
+type Mutation {
+  createProductLive(data: ProductLiveRegister!): ReturnSingleProductLive!
+  updateProductLive(data: ProductLiveRegister!): ReturnSingleProductLive!
+  deleteProductLive(data: DeleteProductLive!): ReturnSingleProductLive
+}

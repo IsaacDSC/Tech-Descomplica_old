@@ -1,0 +1,38 @@
+type Student{
+ id: String
+ nome: String,
+ CPF: String,
+ email: String,
+ status: Boolean,
+}
+
+input StudentRegister {
+  nome: String,
+  CPF: String,
+  email: String,
+}
+
+input StudentCPF {
+  CPF: String!
+}
+input StudentSearch{
+  nome: String,
+  CPF: String,
+  email: String,
+}
+
+input DeleteProductLive {
+  id: String!
+}
+
+type Query {
+  getStudents(): Student!
+  searchStudentsBy(data: StudentSearch!): Student!
+  getStudentsByCPF(data: StudentCPF!): Student!
+}
+
+type Mutation {
+  createStudent(data: StudentRegister!): Student!
+  updateStudent(data: SearchStudent): Student!
+  deleteStudent(data: DeleteProductLive!): Student
+}
