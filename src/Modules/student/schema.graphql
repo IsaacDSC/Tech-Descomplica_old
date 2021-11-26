@@ -12,6 +12,12 @@ input StudentRegister {
   email: String,
 }
 
+input StudentUpdate {
+  nome: String,
+  CPF: String,
+  email: String,
+}
+
 input StudentCPF {
   CPF: String!
 }
@@ -26,13 +32,13 @@ input DeleteProductLive {
 }
 
 type Query {
-  getStudents(): Student!
+  # getStudents(): Student!
   searchStudentsBy(data: StudentSearch!): Student!
   getStudentsByCPF(data: StudentCPF!): Student!
 }
 
 type Mutation {
   createStudent(data: StudentRegister!): Student!
-  updateStudent(data: SearchStudent): Student!
+  updateStudent(data: StudentUpdate): Student!
   deleteStudent(data: DeleteProductLive!): Student
 }
